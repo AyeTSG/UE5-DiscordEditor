@@ -1,0 +1,2 @@
+# Discord for Unreal Editor
+Discord for Unreal Editor is a plugin that aims to bring features from Discord into the Unreal Engine Editor. Currently the project is very early, and only supports the Rich Presence feature, and the Win64 platform.
