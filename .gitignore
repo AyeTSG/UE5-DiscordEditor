@@ -1,4 +1,5 @@
 Binaries/Win64/discord_game_sdk.dll
 Binaries/Win64/discord_game_sdk.dll.lib
-Source/DiscordEditor/discord-files/*
+Source/DiscordEditor/discord-files/*.cpp
+Source/DiscordEditor/discord-files/*.h
 Intermediate/*
