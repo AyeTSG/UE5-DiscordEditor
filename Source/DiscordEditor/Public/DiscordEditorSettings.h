@@ -17,6 +17,10 @@ public:
 	/** Default constructor */
 	UDiscordEditorSettings();
 	
+	/** Should the Rich Presence show elapsed time? */
+	UPROPERTY(Config, EditAnywhere, Category = "Rich Presence|Configuration")
+	bool bShowElapsedTime;
+
 	/** Should project / asset names be hidden? */
 	UPROPERTY(Config, EditAnywhere, Category = "Rich Presence|Configuration")
 	bool bUsePrivacyMode;

@@ -6,6 +6,7 @@
 #include "ISettingsSection.h"
 #include "discord.h"
 #include "Misc/App.h"
+#include "Misc/DateTime.h"
 #include <inttypes.h>
 
 #define LOCTEXT_NAMESPACE "FDiscordEditorModule"
@@ -80,6 +81,14 @@ void FDiscordEditorModule::StartupModule()
 		}
 		else {
 			EditingString = FString::Printf(TEXT("Editing %s..."), FApp::GetProjectName());
+		}
+
+		bool bShowElapsedTime = DiscordEditorSettings->bShowElapsedTime;
+
+		if (bShowElapsedTime)
+		{
+			FDateTime CurrentTime = FDateTime::UtcNow();
+			activity.GetTimestamps().SetStart(CurrentTime.ToUnixTimestamp());
 		}
 		
 		activity.SetState(TCHAR_TO_ANSI(*EditingString));

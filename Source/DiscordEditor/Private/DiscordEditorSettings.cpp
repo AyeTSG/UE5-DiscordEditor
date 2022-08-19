@@ -4,7 +4,8 @@
 #include "DiscordEditorSettings.h"
 
 UDiscordEditorSettings::UDiscordEditorSettings()
-	: bUsePrivacyMode(true)
+	: bShowElapsedTime(true)
+	, bUsePrivacyMode(true)
 	, bUseRichPresence(false)
 	, ClientID(TEXT("1009374384890323028"))
 	, LargeImageKey(TEXT("logo"))
