@@ -12,8 +12,8 @@
 #define LOCTEXT_NAMESPACE "FDiscordEditorModule"
 
 // Create base discord shit
-void* FDiscordEditorModule::DiscordDLLHandle = nullptr;
-discord::Core* core{};
+void *FDiscordEditorModule::DiscordDLLHandle = nullptr;
+discord::Core *core{};
 
 DEFINE_LOG_CATEGORY(LogDiscordEditor);
 
@@ -34,19 +34,20 @@ void FDiscordEditorModule::StartupModule()
 	{
 		UE_LOG(LogDiscordEditor, Fatal, TEXT("Discord DLL could not be loaded, causing a fatal error!"));
 	}
-	else {
+	else
+	{
 		UE_LOG(LogDiscordEditor, Log, TEXT("Discord DLL loaded!"));
 	}
 
 	// == Register settings ==
-	ISettingsModule* SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings");
+	ISettingsModule *SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings");
 
 	if (SettingsModule != nullptr)
 	{
-		ISettingsSectionPtr SettingsSection = SettingsModule->RegisterSettings("Project", "Plugins", "Discord for Unreal Editor", INVTEXT("Discord for Unreal Editor"), INVTEXT("Configure the Discord for Unreal Editor plug-in."), GetMutableDefault<UDiscordEditorSettings>());
+		ISettingsSectionPtr SettingsSection = SettingsModule->RegisterSettings("Editor", "Plugins", "Discord for Unreal Editor", INVTEXT("Discord for Unreal Editor"), INVTEXT("Configure the Discord for Unreal Editor plug-in."), GetMutableDefault<UDiscordEditorSettings>());
 	}
 
-	UE_LOG(LogDiscordEditor, Log, TEXT("Registered settings \"Project -> Plugins -> Discord for Unreal Editor\""));
+	UE_LOG(LogDiscordEditor, Log, TEXT("Registered settings \"Editor -> Plugins -> Discord for Unreal Editor\""));
 
 	// == Initiate Discord ==
 
@@ -79,7 +80,8 @@ void FDiscordEditorModule::StartupModule()
 		{
 			EditingString = FString::Printf(TEXT("Editing a project..."));
 		}
-		else {
+		else
+		{
 			EditingString = FString::Printf(TEXT("Editing %s..."), FApp::GetProjectName());
 		}
 
@@ -90,7 +92,7 @@ void FDiscordEditorModule::StartupModule()
 			FDateTime CurrentTime = FDateTime::UtcNow();
 			activity.GetTimestamps().SetStart(CurrentTime.ToUnixTimestamp());
 		}
-		
+
 		activity.SetState(TCHAR_TO_ANSI(*EditingString));
 
 		if (core != nullptr)
@@ -118,14 +120,14 @@ void FDiscordEditorModule::ShutdownModule()
 	FTSTicker::GetCoreTicker().RemoveTicker(TickDelegateHandle);
 
 	// == Unregister settings ==
-	ISettingsModule* SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings");
+	ISettingsModule *SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings");
 
 	if (SettingsModule != nullptr)
 	{
-		SettingsModule->UnregisterSettings("Project", "Plugins", "Discord for Unreal Editor");
+		SettingsModule->UnregisterSettings("Editor", "Plugins", "Discord for Unreal Editor");
 	}
 
-	UE_LOG(LogDiscordEditor, Log, TEXT("Unregistered settings \"Project -> Plugins -> Discord for Unreal Editor\""));
+	UE_LOG(LogDiscordEditor, Log, TEXT("Unregistered settings \"Editor -> Plugins -> Discord for Unreal Editor\""));
 }
 
 bool FDiscordEditorModule::Tick(float DeltaTime)

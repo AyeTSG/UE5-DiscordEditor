@@ -1,7 +1,12 @@
-Binaries/Win64/*.dll
-Binaries/Win64/*.lib
-Binaries/Win64/*.pdb
-Binaries/Win64/*.modules
-Source/DiscordEditor/discord-files/*.cpp
-Source/DiscordEditor/discord-files/*.h
-Intermediate/*
+# exclude Intermediate and Binaries folders
+Intermediate/
+Binaries/*
+
+# exclude DiscordSDK source files
+Source/DiscordEditor/discord-files/*
+
+# Explicitly inlcude the dev note under Binaries
+!Binaries/Win64/put_discord_dll_and_lib_here.txt
+
+# Explicitly inlcude the dev note under Source/DiscordEditor
+!Source/DiscordEditor/discord-files/put_discord_sources_here.txt
