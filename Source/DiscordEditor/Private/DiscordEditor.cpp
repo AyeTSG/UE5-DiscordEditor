@@ -44,10 +44,10 @@ void FDiscordEditorModule::StartupModule()
 
 	if (SettingsModule != nullptr)
 	{
-		ISettingsSectionPtr SettingsSection = SettingsModule->RegisterSettings("Project", "Plugins", "Discord for Unreal Editor", INVTEXT("Discord for Unreal Editor"), INVTEXT("Configure the Discord for Unreal Editor plug-in."), GetMutableDefault<UDiscordEditorSettings>());
+		ISettingsSectionPtr SettingsSection = SettingsModule->RegisterSettings("Editor", "Plugins", "Discord for Unreal Editor", INVTEXT("Discord for Unreal Editor"), INVTEXT("Configure the Discord for Unreal Editor plug-in."), GetMutableDefault<UDiscordEditorSettings>());
 	}
 
-	UE_LOG(LogDiscordEditor, Log, TEXT("Registered settings \"Project -> Plugins -> Discord for Unreal Editor\""));
+	UE_LOG(LogDiscordEditor, Log, TEXT("Registered settings \"Editor -> Plugins -> Discord for Unreal Editor\""));
 
 	// == Initiate Discord ==
 
@@ -124,10 +124,10 @@ void FDiscordEditorModule::ShutdownModule()
 
 	if (SettingsModule != nullptr)
 	{
-		SettingsModule->UnregisterSettings("Project", "Plugins", "Discord for Unreal Editor");
+		SettingsModule->UnregisterSettings("Editor", "Plugins", "Discord for Unreal Editor");
 	}
 
-	UE_LOG(LogDiscordEditor, Log, TEXT("Unregistered settings \"Project -> Plugins -> Discord for Unreal Editor\""));
+	UE_LOG(LogDiscordEditor, Log, TEXT("Unregistered settings \"Editor -> Plugins -> Discord for Unreal Editor\""));
 }
 
 bool FDiscordEditorModule::Tick(float DeltaTime)
